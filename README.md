@@ -11,3 +11,7 @@ mvn spring-boot:run -Dspring-boot.run.arguments="--spring.mail.host=host --sprin
 
 ### Url
 * http://localhost:8080/h2-console database console, username: sa, password: password
+
+
+### REST documentation
+https://documenter.getpostman.com/view/14843030/Tz5jf1JG
