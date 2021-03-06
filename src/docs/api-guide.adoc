@@ -1,0 +1,3 @@
+==== Hello
+
+include::{snippets}/index/curl-request.adoc[]
