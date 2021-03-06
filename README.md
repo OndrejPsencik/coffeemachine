@@ -1,5 +1,5 @@
 # Getting Started
-Spring Boot Coffe Machine demo application. 
+Spring Boot Coffee Machine demo application. 
 
 ### Start application
 `

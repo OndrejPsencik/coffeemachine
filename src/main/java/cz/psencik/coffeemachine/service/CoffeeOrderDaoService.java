@@ -34,7 +34,7 @@ public class CoffeeOrderDaoService {
         if(coffeeOrder.getCoffeeOrderState()==CoffeeOrderState.DONE) {
             emailSender.sendMail(coffeeOrder.getUser().getUsername(),
                     "Your coffee is ready",
-                    String.format("Your coffee order is ready, coffee type %s, coffe machine: %s, floor: %d, kitchen: %s",
+                    String.format("Your coffee order is ready, coffee type %s, coffee machine: %s, floor: %d, kitchen: %s",
                             coffeeOrder.getCoffeeType(),
                             coffeeOrder.getCoffeeMachine().getDescription(),
                             coffeeOrder.getCoffeeMachine().getFloor(),

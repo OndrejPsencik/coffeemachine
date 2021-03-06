@@ -12,7 +12,7 @@ public class CommonController {
         if (errors.hasErrors())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     errors.getAllErrors().stream().map(
-                            (e) -> String.format("%s - %s", (e.getArguments().length > 0 && e.getArguments()[0] instanceof DefaultMessageSourceResolvable) ?
+                            e -> String.format("%s - %s", (e.getArguments()!=null && e.getArguments().length > 0 && e.getArguments()[0] instanceof DefaultMessageSourceResolvable) ?
                                     ((DefaultMessageSourceResolvable) e.getArguments()[0]).getCode()
                                     : e.getObjectName(), e.getDefaultMessage())
                     ).collect(Collectors.joining(", ")));

@@ -32,7 +32,7 @@ public class InitialUserCheck {
     @Transactional
     @EventListener(ApplicationReadyEvent.class)
     public void checkInitialUser() {
-        userRepository.findById("coffeeadmin").ifPresentOrElse(LambdaUtils::emptyAction,
+        userRepository.findByUsernameIgnoreCase(username).ifPresentOrElse(LambdaUtils::emptyAction,
                 () -> {
                     var u = new User();
                     u.setUsername(username);
