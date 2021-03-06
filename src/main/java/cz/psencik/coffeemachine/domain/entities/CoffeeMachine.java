@@ -26,7 +26,7 @@ public class CoffeeMachine {
 
     @NotNull
     @Min(0) @Max(10)
-    private int floor;
+    private Integer floor;
 
     @NotNull
     @NotBlank
