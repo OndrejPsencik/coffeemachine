@@ -10,7 +10,6 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
 
 @Configuration
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
@@ -40,11 +39,13 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void initialize(AuthenticationManagerBuilder builder, DataSource dataSource) throws Exception {
-        try(Connection c = dataSource.getConnection()) {
-            if (!c.getMetaData().getTables(null, "", "USERS", null).first()) {
-                builder.jdbcAuthentication().dataSource(dataSource).withDefaultSchema().passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
-            } else {
+        try(var c = dataSource.getConnection();
+            var rs = c.getMetaData().getTables(null, "", "USERS", null);
+            var rs2 = c.getMetaData().getTables(null, "", "users", null)) {
+            if (rs.first() || rs2.first()) {
                 builder.jdbcAuthentication().dataSource(dataSource).passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
+            } else {
+                builder.jdbcAuthentication().dataSource(dataSource).withDefaultSchema().passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
             }
         }
     }
