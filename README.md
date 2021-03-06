@@ -9,5 +9,5 @@ mvn spring-boot:run -Dspring-boot.run.arguments="--spring.mail.host=host --sprin
 * admin.username is application initial admin username - default value admin@localhost
 * admin.password is application initial admin password - default value password
 
-###Url
+### Url
 * http://localhost:8080/h2-console database console, username: sa, password: password
