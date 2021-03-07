@@ -27,8 +27,8 @@ public class CoffeeMachinesCrudController extends CommonCrudController<CoffeeMac
         if(repository.count() >= maxMachines) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format("you cannot create additional coffee machine, limit reached, limit: %d", maxMachines));
         }
-        if(((CoffeeMachineRepository)repository).countByFloorAndKitchenAndDescription(entity.getFloor(), entity.getKitchen(), entity.getDescription()) > 0) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "duplicate coffee machine");
+        if(((CoffeeMachineRepository)repository).countByFloorAndKitchen(entity.getFloor(), entity.getKitchen()) > 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "duplicate coffee machine for floor: " + entity.getFloor() + " and kitchen: " + entity.getKitchen());
         }
     }
 }
